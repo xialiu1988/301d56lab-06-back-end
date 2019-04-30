@@ -10,9 +10,13 @@ app.use(cors());
 
 app.use(express.static('./'));
 
-app.get('./location', (req, res) => {
-  const locationData = getLocation();
-  res.send(locationData);
+app.get('/location', (req, res) => {
+  try {
+    const locationData = getLocation();
+    res.send(locationData);
+  } catch (error) {
+    handleError(error);
+  }
 });
 
 //helper to get locatiodata
@@ -31,6 +35,6 @@ function Location(data) {
 
 //error handling
 function handleError(error, res) {
-  if (res) res.status(500).send('error');
+  res.status(500).send('error');
 }
 app.listen(PORT, () => {});
