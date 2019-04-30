@@ -63,8 +63,8 @@ function searchToweather(){
 }
 
 function Weather(demo){
-  this.time=demo.time;
-  this.forcast=demo.summary;
+  this.time=new Date(demo.time*1000).toDateString();
+  this.forecast=demo.summary;
 }
 
 
