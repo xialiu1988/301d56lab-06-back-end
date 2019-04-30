@@ -12,7 +12,7 @@ app.use(express.static('./'));
 
 
 
-app.get('./location',(req,res)=>{
+app.get('/location',(req,res)=>{
   const locationData=getLocation();
   res.send(locationData);
 });
