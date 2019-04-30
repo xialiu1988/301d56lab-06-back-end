@@ -10,12 +10,13 @@ app.use(cors());
 
 app.use(express.static('./'));
 
-
+let queryData='';
 
 app.get('/location',(req,res)=>{
   try{
     console.log(req.query);
-    const locationData=getLocation(req.query.data);
+    const locationData=getLocation();
+    queryData=req.query.data;
     res.send(locationData);
   }
   catch(error){
@@ -34,6 +35,7 @@ function getLocation(){
 
 //location constructor
 function Location(data){
+  this.search_query=queryData;
   this.formatted_query=data.formatted_address;
   this.latitude=data.geometry.location.lat;
   this.longitude=data.geometry.location.lng;
